@@ -1,0 +1,9 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://de0iu8fko7guq"]
+
+[resource]
+shading_mode = 2
+albedo_color = Color(0, 0.666667, 0.313726, 1)
+roughness = 0.8
+ao_enabled = true
+texture_filter = 0
+distance_fade_max_distance = 1000.0
