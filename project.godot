@@ -1,0 +1,31 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=5
+
+[application]
+
+config/name="Voxel Engine"
+config/features=PackedStringArray("4.2", "Forward Plus")
+boot_splash/bg_color=Color(1, 1, 1, 1)
+boot_splash/image="res://Unimportant right now/Logo/file.png"
+config/icon="res://icon.svg"
+boot_splash/minimum_display_time=1000
+
+[autoload]
+
+DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
+
+[editor]
+
+movie_writer/movie_file="C:/Users/jonfr/Documents/Game Dev/Godot/Sparse Voxel Octree tests/Testing Videos/The beginnings/NoHelp.avi"
+movie_writer/disable_vsync=true
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/cba/plugin.cfg", "res://addons/cyberassets/plugin.cfg", "res://addons/debug_menu/plugin.cfg", "res://addons/kanban_tasks/plugin.cfg")

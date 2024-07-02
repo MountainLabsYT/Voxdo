@@ -1,0 +1,137 @@
+[gd_scene load_steps=10 format=3 uid="uid://bft5lcg7pbmsd"]
+
+[ext_resource type="Script" path="res://Voxel.gd" id="1_rnlsg"]
+[ext_resource type="Script" path="res://Epic.gd" id="2_c3c0r"]
+[ext_resource type="Material" uid="uid://rdvxpckd4k0c" path="res://Unimportant right now/Sky.tres" id="2_lgbo3"]
+[ext_resource type="Script" path="res://camera.gd" id="2_s27ft"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ldins"]
+
+[sub_resource type="MeshLibrary" id="MeshLibrary_5kn1r"]
+item/0/name = ""
+item/0/mesh = SubResource("BoxMesh_ldins")
+item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/shapes = []
+item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/navigation_layers = 1
+
+[sub_resource type="Sky" id="Sky_vmbui"]
+sky_material = ExtResource("2_lgbo3")
+
+[sub_resource type="Environment" id="Environment_a7q1b"]
+background_mode = 2
+sky = SubResource("Sky_vmbui")
+sky_rotation = Vector3(3.14159, 0, 0)
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.005
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_o5dew"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = SubResource("MeshLibrary_5kn1r")
+
+[node name="FreeLookCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.5734)
+script = ExtResource("2_s27ft")
+
+[node name="Node3D" type="Node3D" parent="FreeLookCamera"]
+script = ExtResource("2_c3c0r")
+
+[node name="CoolDude" type="RayCast3D" parent="FreeLookCamera/Node3D"]
+target_position = Vector3(0, 0, -100)
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 36.2347)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_a7q1b")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51.4957, 0)
+visible = false
+light_color = Color(0.933333, 0, 0.505882, 1)
+light_energy = 16.0
+light_size = 1.0
+omni_range = 55.3811
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(0.995273, 0, -0.0971139, 0, 1, 0, 0.0971139, 0, 0.995273, 8.59141, 6.40856, 9.6344)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("CapsuleMesh_o5dew")
+skeleton = NodePath("../..")
+
+[node name="Chunk" type="Node3D" parent="."]
+
+[node name="Node3D" type="Node3D" parent="Chunk"]
+script = ExtResource("1_rnlsg")
+
+[node name="Node3D2" type="Node3D" parent="Chunk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 0)
+script = ExtResource("1_rnlsg")
+
+[node name="Node3D3" type="Node3D" parent="Chunk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 12)
+script = ExtResource("1_rnlsg")
+
+[node name="Node3D4" type="Node3D" parent="Chunk"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 12)
+script = ExtResource("1_rnlsg")
+
+[node name="Chunk2" type="Node3D" parent="."]
+
+[node name="Node3D5" type="Node3D" parent="Chunk2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 0)
+script = ExtResource("1_rnlsg")
+
+[node name="Node3D6" type="Node3D" parent="Chunk2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 0)
+script = ExtResource("1_rnlsg")
+
+[node name="Node3D7" type="Node3D" parent="Chunk2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 12)
+script = ExtResource("1_rnlsg")
+
+[node name="Node3D8" type="Node3D" parent="Chunk2"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 12)
+script = ExtResource("1_rnlsg")
+
+[node name="Chunk3" type="Node3D" parent="."]
+
+[node name="Node3D9" type="Node3D" parent="Chunk3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 24)
+script = ExtResource("1_rnlsg")
+
+[node name="Node3D10" type="Node3D" parent="Chunk3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 24)
+script = ExtResource("1_rnlsg")
+
+[node name="Node3D11" type="Node3D" parent="Chunk3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, 36)
+script = ExtResource("1_rnlsg")
+
+[node name="Node3D12" type="Node3D" parent="Chunk3"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 36)
+script = ExtResource("1_rnlsg")
+
+[node name="Chunk4" type="Node3D" parent="."]
+
+[node name="Node3D13" type="Node3D" parent="Chunk4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 24)
+script = ExtResource("1_rnlsg")
+
+[node name="Node3D14" type="Node3D" parent="Chunk4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 24)
+script = ExtResource("1_rnlsg")
+
+[node name="Node3D15" type="Node3D" parent="Chunk4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36, 0, 36)
+script = ExtResource("1_rnlsg")
+
+[node name="Node3D16" type="Node3D" parent="Chunk4"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24, 0, 36)
+script = ExtResource("1_rnlsg")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]

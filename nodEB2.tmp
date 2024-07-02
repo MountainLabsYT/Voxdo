@@ -1,0 +1,68 @@
+[gd_scene load_steps=9 format=3 uid="uid://bft5lcg7pbmsd"]
+
+[ext_resource type="Script" path="res://Node3D.gd" id="1_rnlsg"]
+[ext_resource type="Script" path="res://camera.gd" id="2_s27ft"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_ldins"]
+
+[sub_resource type="MeshLibrary" id="MeshLibrary_5kn1r"]
+item/0/name = ""
+item/0/mesh = SubResource("BoxMesh_ldins")
+item/0/mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/shapes = []
+item/0/navigation_mesh_transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+item/0/navigation_layers = 1
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gtja3"]
+sky_top_color = Color(0.243137, 0.482353, 0.572549, 1)
+sky_horizon_color = Color(0.254902, 0.521569, 0.337255, 1)
+sky_energy_multiplier = 1.83
+ground_horizon_color = Color(0.278431, 0.65098, 0.45098, 1)
+sun_angle_max = 76.75
+
+[sub_resource type="Sky" id="Sky_q67pt"]
+sky_material = SubResource("ProceduralSkyMaterial_gtja3")
+
+[sub_resource type="Environment" id="Environment_74gko"]
+background_mode = 2
+sky = SubResource("Sky_q67pt")
+volumetric_fog_enabled = true
+volumetric_fog_albedo = Color(0, 0.560784, 0.282353, 1)
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_o5dew"]
+
+[node name="Node3D" type="Node3D"]
+
+[node name="GridMap" type="GridMap" parent="."]
+mesh_library = SubResource("MeshLibrary_5kn1r")
+
+[node name="FreeLookCamera" type="Camera3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 11.5734)
+script = ExtResource("2_s27ft")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 0.258819, 0.965926, 0, -0.965926, 0.258819, 0, 0, 36.2347)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_74gko")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 51.4957, 0)
+visible = false
+light_color = Color(0.933333, 0, 0.505882, 1)
+light_energy = 16.0
+light_size = 1.0
+omni_range = 55.3811
+
+[node name="StaticBody3D" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 11, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D"]
+mesh = SubResource("CapsuleMesh_o5dew")
+skeleton = NodePath("../..")
+
+[node name="Node3D" type="Node3D" parent="."]
+visible = false
+script = ExtResource("1_rnlsg")
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
